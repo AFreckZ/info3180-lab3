@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, url_for, flash
-
+from app import mail
+from flask_mail import Message
 
 ###
 # Routing for your application.
@@ -36,7 +37,7 @@ def contact():
             )
             msg.body = message
             mail.send(msg)
-            flash('You have successfully filled out the form', 'success')
+            flash('The Message has successfully been delivered', 'success')
             return redirect(url_for('home'))
         
         flash_errors(form)
